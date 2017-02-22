@@ -1,20 +1,18 @@
 import * as React from 'react'
 
+import { Form } from './Form'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 
-export const LoginForm = ({ title, submit, status }) => {
+export const LoginForm = ({ title, admin, onResponse }) => {
 	return (
 		<div style={wrap}>
 			<div style={titleStyle}>{title}</div>
-			<form name="login-form" style={form} role="form">
-				{status.failed && (<div>Wrong ID or Password</div>)}
+			<Form name="login-form" admin={admin} resource="/auth/login" style={form} onResponse={onResponse}>
 				<TextField name="id" hintText="ID" style={width100} />
 				<TextField name="password" type="password" hintText="Password" style={width100} />
-				{status.waiting && (<div>Now logging in...</div>)}
-				{status.succeeded && (<div>Login Success</div>)}
-				<RaisedButton type="submit" onClick={submit} label="Log in" primary={true} style={width100}/>
-			</form>
+				<RaisedButton type="submit" label="Log in" primary={true} style={width100}/>
+			</Form>
 		</div>
 	)
 }

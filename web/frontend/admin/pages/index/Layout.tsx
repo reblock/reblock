@@ -4,11 +4,11 @@ import * as React from 'react';
 import { LoginForm } from '../../../components/LoginForm'
 import Paper from 'material-ui/Paper'
 
-export const Layout = ({ submit, status }) => {
+export const Layout = ({ onResponse }) => {
 	return (
 		<div style={wrap}>
 			<Paper zDepth={3}>
-				<LoginForm title="Reblock Admin" submit={submit} status={status}/>
+				<LoginForm title="Reblock Admin" admin={true} onResponse={onResponse}/>
 			</Paper>
 		</div>
 	);
