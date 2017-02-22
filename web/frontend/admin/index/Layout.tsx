@@ -1,7 +1,7 @@
 'use strict';
 import * as React from 'react';
 
-import { LoginForm } from '../../../components/LoginForm'
+import { LoginForm } from '../../components/LoginForm'
 import Paper from 'material-ui/Paper'
 
 export const Layout = ({ onResponse }) => {

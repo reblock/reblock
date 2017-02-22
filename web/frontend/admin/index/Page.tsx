@@ -2,7 +2,7 @@
 import * as React from 'react';
 
 import { Layout } from './Layout'
-import { setToken } from '../../../lib/token'
+import { setToken } from '../../lib/token'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
