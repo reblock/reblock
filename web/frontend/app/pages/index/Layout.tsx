@@ -1,7 +1,7 @@
 'use strict';
 
 import * as React from 'react';
-import { Page } from '../../../common/Page'
+import { Page } from '../../../components/Page'
 
 import AppBar from 'material-ui/AppBar';
 

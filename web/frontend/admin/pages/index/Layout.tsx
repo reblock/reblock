@@ -2,12 +2,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux'
 
-import { Page } from '../../../common/Page'
 import { setToken } from '../../../common/lib/token'
 import { FetchableComponent } from '../../../common/lib/fetch'
 import { FetchProps } from '../../../common/lib/fetch/props'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
+import { Page } from '../../../components/Page'
 import Paper from 'material-ui/Paper'
 
 export interface LayoutProps extends FetchProps {
