@@ -1,22 +1,22 @@
 'use strict';
 
 import * as React from 'react';
-import { Link } from 'react-router'
-import MainBar from '../common/menu/MainBar'
-import * as CSSModules from 'react-css-modules';
-import styles from './style.css'
+import { Page } from '../../../common/Page'
 
-class IndexPage extends React.Component<{}, {}> {
-	render() {
+import AppBar from 'material-ui/AppBar';
+
+class IndexPage extends Page<{}, {}> {
+	content() {
 		return (
-			<div styleName="index-wrap">
+			<div>
+				<AppBar title="Reblock boilerplate" iconClassNameRight="muidocs-icon-navigation-expand-more" />
 				<div className="wrap">
 					<h1>Welcome to Reblock</h1>
 					<p>The toolkit for React.js developers</p>
 				</div>
 			</div>
-		);
+		)
 	}
 }
 
-export default CSSModules(IndexPage, styles)
+export default IndexPage
