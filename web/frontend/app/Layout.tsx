@@ -1,16 +1,19 @@
 'use strict';
 
 import * as React from 'react';
-import { Link } from 'react-router';
+import * as Radium from 'radium'
+
 import AuthUI from './pages/common/auth/UIPackage'
-import * as CSSModules from 'react-css-modules';
-import styles from './Layout.css'
+
+const style = {
+	height: '100%',
+}
 
 class Layout extends React.Component<{}, {}> {
 	render() {
 		return (
-			<div className="app-container">
-				<div className="app-content">
+			<div style={style} className="app-container">
+				<div style={style} className="app-content">
 					{this.props.children}
 				</div>
 				<AuthUI />
@@ -19,4 +22,4 @@ class Layout extends React.Component<{}, {}> {
 	}
 }
 
-export default CSSModules(Layout, styles)
+export default Radium(Layout)

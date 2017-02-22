@@ -1,15 +1,17 @@
 'use strict';
 
 import * as React from 'react';
-import { Link } from 'react-router';
-import * as CSSModules from 'react-css-modules';
-import styles from './Layout.css'
+import * as Radium from 'radium'
+
+const style = {
+	height: '100%',
+}
 
 class Layout extends React.Component<{}, {}> {
 	render() {
 		return (
-			<div className="app-container">
-				<div className="app-content">
+			<div style={style} className="app-container">
+				<div style={style} className="app-content">
 					{this.props.children}
 				</div>
 			</div>
@@ -17,4 +19,4 @@ class Layout extends React.Component<{}, {}> {
 	}
 }
 
-export default CSSModules(Layout, styles)
+export default Radium(Layout)
