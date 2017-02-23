@@ -3,11 +3,19 @@
 import * as React from 'react';
 import * as Radium from 'radium'
 
+import { isTokenValid } from '../lib/token'
+
 const style = {
 	height: '100%',
 }
 
 class Layout extends React.Component<{}, {}> {
+	componentWillMount() {
+		if (!isTokenValid("admin")) {
+			this.context.router.push('/admin')
+		}
+	}
+
 	render() {
 		return (
 			<div style={style} className="app-container">
@@ -17,6 +25,10 @@ class Layout extends React.Component<{}, {}> {
 			</div>
 		);
 	}
+
+	static contextTypes = {
+		router: React.PropTypes.func.isRequired
+    }
 }
 
 export default Radium(Layout)

@@ -7,12 +7,14 @@ interface FormProps {
 	resource: string
 	ID?: string | number
 	admin?: boolean
+	afterLoad?: (any) => any
 	onRequest?: (any) => any
 	onResponse?: (any) => any
 }
 
 interface FormState {
 	loading: boolean
+	initialValues: any
 	values: any
 }
 
@@ -32,7 +34,8 @@ export class Form extends React.Component<FormProps, FormState> {
 				{React.Children.map(this.props.children, child => {
 					if (child) {
 						return React.cloneElement(child as React.DOMElement<any, any>, {
-							onChange: this.handleInputChange
+							onChange: this.handleInputChange,
+							state: this.state,
 						})
 					}
 				})}
@@ -83,7 +86,7 @@ export class Form extends React.Component<FormProps, FormState> {
 			this.setState({
 				loading: false,
 				values: result.values || {},
-			})
+			} as FormState)
 		})
 
 	}
@@ -93,7 +96,8 @@ export class Form extends React.Component<FormProps, FormState> {
 
 		this.state = {
 			loading: false,
-			values: {}
+			values: {},
+			initialValues: {},
 		}
 
 		this.submit = this.submit.bind(this)
