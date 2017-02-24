@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "c": "npm run compile",
     "compile": "node .\\build\\cli.js",
+    "d": "npm run dev",
     "dev": "node .\\build\\runner.js",
     "release": "node .\\build\\cli.js -p",
     "test": "node .\\build\\test-automation.js"
