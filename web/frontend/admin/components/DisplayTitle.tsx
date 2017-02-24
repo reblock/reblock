@@ -20,7 +20,7 @@ export const DisplayTitle = (props: DisplayTitleProps) => {
 
 const mapper = state => {
 	return {
-		update: !_.isEmpty(state.initialValues),
-		title: state.initialValues.title,
+		update: !_.isEmpty(state.loaded),
+		title: state.defaultValues.title,
 	}
 }

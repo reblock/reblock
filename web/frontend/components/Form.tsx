@@ -1,4 +1,5 @@
 import * as React from 'react'
+
 import { fetch } from '../lib/fetch'
 
 interface FormProps {
@@ -13,8 +14,9 @@ interface FormProps {
 }
 
 interface FormState {
+	loaded: boolean
 	loading: boolean
-	initialValues: any
+	defaultValues: any
 	values: any
 }
 
@@ -95,10 +97,18 @@ export class Form extends React.Component<FormProps, FormState> {
 		super(props)
 
 		this.state = {
+			loaded: false,
 			loading: false,
 			values: {},
-			initialValues: {},
+			defaultValues: {},
 		}
+
+		React.Children.forEach(props.children, (child:any) => {
+			if(child && child.props && 
+				child.props.name && child.props.defaultValue) {
+				this.state.values[child.props.name] = child.props.defaultValue
+			}
+		})
 
 		this.submit = this.submit.bind(this)
 		this.handleInputChange = this.handleInputChange.bind(this)
