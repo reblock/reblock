@@ -18,6 +18,7 @@ export function renderer(name, routes, createStore, publicUrl) {
 					`<meta charset="utf-8" />`,
 					`<meta name="viewport" content="width=device-width, initial-scale=1.0">`,
 					`<title>Reblock - The toolkit for React.js developers</title>`,
+					`<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">`,
 					`<link rel="stylesheet" href="/css/style.css">`,
 				`</head>`,
 			`<body>`,
