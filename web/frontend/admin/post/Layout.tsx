@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 
-import * as Radium from 'radium'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'

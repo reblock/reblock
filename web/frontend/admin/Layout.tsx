@@ -1,8 +1,6 @@
 'use strict';
 
 import * as React from 'react';
-import * as Radium from 'radium'
-
 import { isTokenValid } from '../lib/token'
 
 const style = {
@@ -31,4 +29,4 @@ class Layout extends React.Component<{}, {}> {
     }
 }
 
-export default Radium(Layout)
+export default Layout
