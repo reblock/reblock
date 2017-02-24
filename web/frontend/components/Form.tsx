@@ -2,11 +2,13 @@ import * as React from 'react'
 import _ from 'lodash'
 
 import { fetch } from '../lib/fetch'
+import { Spinner } from './Spinner'
 
 interface FormProps {
 	name: string
-	style?: any
 	resource: string
+	loadingMessage?: string
+	style?: any
 	dataKey?: any
 	admin?: boolean
 	afterLoad?: (any) => any
@@ -54,9 +56,11 @@ export class Form extends React.Component<FormProps, FormState> {
 	}
 
 	loading() {
+		var { style, loadingMessage } = this.props
 		return (
-			<div>
-				Loading...
+			<div style={style}>
+				<Spinner size={40} status="loading" />
+				<div style={loadingMessageStyle}>{loadingMessage || "Loading..."}</div>
 			</div>
 		)
 	}
@@ -160,4 +164,10 @@ export class Form extends React.Component<FormProps, FormState> {
 		this.submit = this.submit.bind(this)
 		this.handleInputChange = this.handleInputChange.bind(this)
 	}
+}
+
+const loadingMessageStyle = {
+	textAlign: "center",
+	marginTop: "20px",
+	fontSize: "1rem",
 }
