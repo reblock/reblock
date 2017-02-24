@@ -45,12 +45,12 @@ export function handleGetRequest(setting:RequestSetting) {
 		.then((result:any) => {
 			var data = result.dataValues
 			modifyContent(data)
-			.then(content => {
-				delete content.createdAt
-				delete content.updatedAt
+			.then(values => {
+				delete values.createdAt
+				delete values.updatedAt
 				res.json(Object.assign({
 					success: true,
-					content,
+					values,
 				}, onGetSuccess(result)))
 			})
 		})
