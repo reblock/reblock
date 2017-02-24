@@ -75,6 +75,10 @@ export class Form extends React.Component<FormProps, FormState> {
 
 	isValidKey() {
 		let dataKey = this.props.dataKey
+		if(!_.isObject(dataKey)) {
+			return false
+		}
+
 		let keys = Object.keys(dataKey)
 		for(let i = 0; i < keys.length; i++) {
 			if(dataKey[keys[i]]) {
