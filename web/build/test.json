@@ -1,5 +1,0 @@
-{
-	"target": [
-		"frontend/app/auth/signup/test/reducer"
-	]
-}
