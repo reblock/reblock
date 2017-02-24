@@ -1,11 +1,9 @@
-'use strict';
-
 import * as React from 'react';
-import { Page } from '../../../components/Page'
+import { Page } from '../../components/Page'
 
 import AppBar from 'material-ui/AppBar';
 
-class IndexPage extends Page<{}, {}> {
+export class Layout extends Page<{}, {}> {
 	content() {
 		return (
 			<div>
@@ -18,5 +16,3 @@ class IndexPage extends Page<{}, {}> {
 		)
 	}
 }
-
-export default IndexPage
