@@ -1,5 +1,4 @@
 import * as React from 'react';
-import _ from 'lodash'
 
 import { StateToProps } from '../../components/StateToProps'
 import { Title } from './Title'
@@ -20,7 +19,7 @@ export const DisplayTitle = (props: DisplayTitleProps) => {
 
 const mapper = state => {
 	return {
-		update: !_.isEmpty(state.loaded),
+		update: state.loaded,
 		title: state.defaultValues.title,
 	}
 }

@@ -1,4 +1,5 @@
 import * as React from 'react'
+import _ from 'lodash'
 
 import { fetch } from '../lib/fetch'
 
@@ -6,7 +7,7 @@ interface FormProps {
 	name: string
 	style?: any
 	resource: string
-	ID?: string | number
+	dataKey?: any
 	admin?: boolean
 	afterLoad?: (any) => any
 	onRequest?: (any) => any
@@ -21,6 +22,12 @@ interface FormState {
 }
 
 export class Form extends React.Component<FormProps, FormState> {
+	componentWillMount() {
+		if(this.isValidKey()) {
+			this.load()
+		}
+	}
+
 	render() {
 		if(this.state.loading) {
 			return this.loading()
@@ -30,14 +37,15 @@ export class Form extends React.Component<FormProps, FormState> {
 	}
 
 	content() {
-		let { name, resource, ID, style } = this.props
+		let { name, resource, style } = this.props
 		return (
 			<form name={name} style={style} role="form" action="POST" onSubmit={this.submit}>
-				{React.Children.map(this.props.children, child => {
+				{React.Children.map(this.props.children, (child:any) => {
 					if (child) {
 						return React.cloneElement(child as React.DOMElement<any, any>, {
 							onChange: this.handleInputChange,
 							state: this.state,
+							defaultValue: child.props && this.state.defaultValues[child.props.name],
 						})
 					}
 				})}
@@ -63,6 +71,41 @@ export class Form extends React.Component<FormProps, FormState> {
 				[name]: value,
 			})
 		} as FormState)
+	}
+
+	isValidKey() {
+		let dataKey = this.props.dataKey
+		let keys = Object.keys(dataKey)
+		for(let i = 0; i < keys.length; i++) {
+			if(dataKey[keys[i]]) {
+				return true
+			}
+		}
+		return false
+	}
+
+	load() {
+		this.setState({
+			loading: true
+		} as FormState)
+		
+		var { admin, dataKey, resource, afterLoad } = this.props
+		fetch({
+			admin,
+			args: dataKey,
+			method: 'GET',
+			resource,
+		})
+		.then((result:any) => {
+			afterLoad = afterLoad || ((a) => a)
+			result = afterLoad(result)
+			this.setState({
+				loading: false,
+				loaded: true,
+				defaultValues: result.values,
+				values: result.values,
+			} as FormState)
+		})
 	}
 
 	submit(e) {

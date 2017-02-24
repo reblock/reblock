@@ -12,7 +12,7 @@ import { DisplayTitle } from '../components/DisplayTitle'
 export const Layout = ({ dataKey }) => {
 	return (
 		<MuiThemeProvider>
-			<Form style={form} name="lecture-form" admin={true} resource="/post" >
+			<Form style={form} dataKey={dataKey} name="lecture-form" admin={true} resource="/post" >
 				<DisplayTitle type='Post' />
 				<input type="hidden" name="ID" value="" />
 				<TextField name="title" hintText="Title" floatingLabelText="Title" fullWidth={true} />
