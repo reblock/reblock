@@ -74,7 +74,7 @@ process.stdin.on('data', chunk => {
 
 function bundle() {
 	async.each(toBeBundled, (dir, done) => {
-		Promise.all([bundler.js(dir), bundler.css(dir)])
+		bundler.js(dir)
 		.then(() => {
 			done()
 		})

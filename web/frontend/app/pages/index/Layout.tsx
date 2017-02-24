@@ -10,7 +10,7 @@ class IndexPage extends Page<{}, {}> {
 		return (
 			<div>
 				<AppBar title="Reblock boilerplate" iconClassNameRight="muidocs-icon-navigation-expand-more" />
-				<div className="wrap">
+				<div>
 					<h1>Welcome to Reblock</h1>
 					<p>The toolkit for React.js developers</p>
 				</div>

@@ -64,21 +64,3 @@ exports.js = (dir, production) => {
 		return bundle
 	})
 }
-
-exports.css = (dir, production) => {
-	console.log('CSS bundling started for ' + dir)
-	var destFileName = destFilePath(dir + '/style.css', production, 'static')
-	destFileName = removeFrontend(destFileName)
-	return files(destDir(production, `.css/${dir}`))
-	.then(files => {
-		var css = files.map(fileName => {
-			return fs.readFileSync(fileName)
-		})
-		var finalCss = css.join('\n')
-		if(production) {
-			finalCss = new CleanCss().minify(finalCss).styles
-		}
-		ensureWrite(destFileName, finalCss)
-		console.log('CSS bundling ended for ' + dir)
-	})
-}

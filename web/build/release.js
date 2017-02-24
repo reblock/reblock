@@ -36,7 +36,6 @@ function release(produnction) {
 
 			const bundleDirs = ['frontend/app', 'frontend/admin']
 			async.each(bundleDirs, (dir, done2) => {
-				bundler.css(dir, production)
 				bundler.js(dir, production)
 				.then(() => {
 					done2()
@@ -64,7 +63,6 @@ function release(produnction) {
 		done => {
 			if(production) {
 				console.log('> Finishing production release')
-				remove('.css', production)
 				remove('.client', production)
 				copy('./package.json', production)
 				console.log('< Finished production release')
