@@ -119,6 +119,7 @@ function addFile(path) {
 		}
 	}
 	var code = fs.readFileSync(path).toString()
+	// check content is changed
 	if (!codes[path] || codes[path] != code) {
 		console.log(`${path} will be compiled`)
 		codes[path] = code

@@ -8,6 +8,8 @@
     "compile": "node .\\build\\cli.js",
     "d": "npm run dev",
     "dev": "node .\\build\\runner.js",
+    "app": "node .\\build\\design\\server.js",
+    "admin": "node .\\build\\design\\server.js --admin",
     "release": "node .\\build\\cli.js -p",
     "test": "node .\\build\\test-automation.js"
   },
@@ -40,6 +42,7 @@
     "fs-extra": "^1.0.0",
     "nodemon": "^1.11.0",
     "react-addons-test-utils": "^15.4.1",
+    "react-hot-loader": "^3.0.0-beta.6",
     "redux-devtools": "^3.3.1",
     "rollup": "^0.39.2",
     "rollup-plugin-commonjs": "^7.0.0",
@@ -50,6 +53,8 @@
     "rollup-plugin-replace": "^1.1.1",
     "typescript": "^2.2.1",
     "uglify-js": "^2.7.5",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1",
     "yargs": "^6.5.0"
   },
   "dependencies": {

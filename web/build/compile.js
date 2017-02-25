@@ -79,6 +79,7 @@ function compileTsToES6(fileName, production) {
 		"ReactDom",
 		"Immutable",
 		"Measure",
+		"_",
 	]
 	var code = result.outputText.replace(new RegExp(`import \\* as (${replacements.join('|')})`, 'g'), "import $1")
 
