@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import { MuiTheme } from '../components/MuiTheme'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 
@@ -11,7 +11,7 @@ import { DisplayTitle } from '../components/DisplayTitle'
 
 export const Layout = ({ dataKey }) => {
 	return (
-		<MuiThemeProvider>
+		<MuiTheme>
 			<Form style={form} dataKey={dataKey} name="lecture-form" admin={true} resource="/post" >
 				<DisplayTitle type='Post' />
 				<input type="hidden" name="ID" value="" />
@@ -22,7 +22,7 @@ export const Layout = ({ dataKey }) => {
 					<RaisedButton type="submit" primary={true}>Save</RaisedButton>
 				</div>
 			</Form>
-		</MuiThemeProvider>
+		</MuiTheme>
 	)
 }
 

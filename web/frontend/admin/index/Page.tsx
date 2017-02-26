@@ -4,11 +4,11 @@ import * as React from 'react';
 import { Layout } from './Layout'
 import { setToken } from '../../lib/token'
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import { MuiTheme } from '../components/MuiTheme'
 
 export const IndexPage = () => {
 	return (
-		<MuiThemeProvider>
+		<MuiTheme>
 			<Layout onResponse={
 				result => {
 					if (result.success) {
@@ -16,6 +16,6 @@ export const IndexPage = () => {
 					} 
 				}
 			}/>
-		</MuiThemeProvider>
+		</MuiTheme>
 	)
 }
