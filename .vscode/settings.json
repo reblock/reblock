@@ -8,5 +8,7 @@
 	"files.exclude": {
 		"**/.debug": true,
 		"**/.production": true
-	}
+	},
+
+	"typescript.tsdk": "./web/node_modules/typescript/lib"
 }
