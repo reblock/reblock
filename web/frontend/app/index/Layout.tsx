@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Page } from '../../components/Page'
 
+import { MuiTheme } from '../components/MuiTheme'
 import AppBar from 'material-ui/AppBar';
 
-export class Layout extends Page<{}, {}> {
-	content() {
-		return (
+export const Layout = props => {
+	return (
+		<MuiTheme>
 			<div>
 				<AppBar title="Reblock boilerplate" iconClassNameRight="muidocs-icon-navigation-expand-more" />
 				<div>
@@ -13,6 +13,6 @@ export class Layout extends Page<{}, {}> {
 					<p>The toolkit for React.js developers</p>
 				</div>
 			</div>
-		)
-	}
+		</MuiTheme>
+	)
 }

@@ -80,6 +80,7 @@ function compileTsToES6(fileName, production) {
 		"Immutable",
 		"Measure",
 		"_",
+		"injectTapEventPlugin",
 	]
 	var code = result.outputText.replace(new RegExp(`import \\* as (${replacements.join('|')})`, 'g'), "import $1")
 
