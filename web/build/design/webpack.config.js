@@ -50,9 +50,8 @@ module.exports = env => {
 
 			historyApiFallback: {
 			rewrites: [
-				{ from: /^\/$/, to: "./build/design/index.html"},
-				{ from: /^\/admin$/, to: "./build/design/index.html"},
 				{ from: "/css/style.css", to: "./static/css/style.css"},
+				{ from: /^\//, to: "./build/design/index.html"},
 			]
 		},
 			// respond to 404s with index.html
