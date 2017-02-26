@@ -1,4 +1,3 @@
-'use strict';
 import * as React from 'react';
 
 import { MuiTheme } from '../components/MuiTheme'
@@ -10,12 +9,12 @@ export const Layout = ({ onResponse }) => {
 		<MuiTheme>
 			<div style={wrap}>
 				<Paper zDepth={3} style={paper}>
-					<div style={titleStyle}>Reblock Admin</div>
+					<div style={titleStyle}>Reblock Login</div>
 					<LoginForm admin={true} onResponse={onResponse}/>
 				</Paper>
 			</div>
 		</MuiTheme>
-	);
+	)
 }
 
 const wrap: React.CSSProperties = {
@@ -23,7 +22,7 @@ const wrap: React.CSSProperties = {
 	justifyContent: "center",
 	alignItems: "center",
 	height: "100%",
-	background: "aliceblue",
+	background: "#699cc9",
 }
 
 const paper = {
