@@ -61,6 +61,7 @@ function compileTs(fileName, production) {
 		module: "commonjs",
 		target: "es5",
 		inlineSourceMap: !production,
+		experimentalDecorators: true,
 	})
 	ensureWrite(compileTsDestPath(fileName, production), result.outputText)
 }
@@ -71,6 +72,7 @@ function compileTsToES6(fileName, production) {
 		module: "es6",
 		target: "es3",
 		moduleResolution: "node",
+		experimentalDecorators: true,
 	})
 	let replacements = [
 		"CSSModules",
