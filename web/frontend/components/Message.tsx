@@ -125,17 +125,19 @@ export const Layout = (props:LayoutProps) => {
 	var messageStyle = Object.assign(styles, theme)
 
 	return new (injectSheet(messageStyle)(({classes, children}) => {
+		var { backgroundStyle, background, iconStyle, titleStyle, contentStyle, font} = classes
+		
 		return (
-			<div className={classnames(classes.backgroundStyle, classes.background)}>
+			<div className={classnames(backgroundStyle, background)}>
 				{children && 
-					<div className={classes.iconStyle}>
+					<div className={classnames(iconStyle, font)}>
 						{React.cloneElement(children as React.DOMElement<any, any>, {style: theme.font})}
 					</div>
 				}
 				<div>
-					<div className={classes.titleStyle}>{title}</div>
+					<div className={classnames(titleStyle, font)}>{title}</div>
 					{content && 
-						<div className={classes.contentStyle}>{content}</div>
+						<div className={classnames(contentStyle, font)}>{content}</div>
 					}
 				</div>
 			</div>
