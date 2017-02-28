@@ -8,6 +8,7 @@ interface FormProps {
 	name: string
 	resource: string
 	loadingMessage?: string
+	className?: any
 	style?: any
 	dataKey?: any
 	admin?: boolean
@@ -39,9 +40,9 @@ export class Form extends React.Component<FormProps, FormState> {
 	}
 
 	content() {
-		let { name, resource, style } = this.props
+		let { name, resource, style, className } = this.props
 		return (
-			<form name={name} style={style} role="form" action="POST" onSubmit={this.submit}>
+			<form name={name} className={className} style={style} role="form" action="POST" onSubmit={this.submit}>
 				{React.Children.map(this.props.children, (child:any) => {
 					if (child) {
 						return React.cloneElement(child as React.DOMElement<any, any>, {
