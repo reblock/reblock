@@ -1,10 +1,30 @@
 import * as React from 'react'
+import injectSheet from 'react-jss'
+import * as classnames from 'classnames'
 
-import { Styler } from './Styler'
 import { Form } from './Form'
 import { CheckBox } from './CheckBox'
+import { TextField } from './TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-import TextField from 'material-ui/TextField'
+
+const styles = {
+	form: {
+		width: "280px",
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "center",
+	},
+	textField: {
+		width: "100%",
+	},
+	hidden: {
+		display: "none",
+	},
+	button: {
+		width: "100%",
+		marginTop: "12px",
+	},
+}
 
 interface LoginFormProps {
 	admin: boolean
@@ -17,7 +37,7 @@ interface LoginFormProps {
 	buttonStyle?: any
 }
 
-export const LoginForm = Styler((props: LoginFormProps) => {
+export const LoginForm = (props: LoginFormProps) => {
 	props = Object.assign({
 		admin: false,
 		onResponse: a => (a),
@@ -30,32 +50,22 @@ export const LoginForm = Styler((props: LoginFormProps) => {
 	var { admin, onResponse, showRememberMe, rememberUser, 
 		textFieldStyle, rememberMeStyle, buttonStyle } = props
 	
-	return (
-		<Form name="login-form" admin={admin} resource="/auth/login" style={form} onResponse={onResponse}>
-			<TextField name="id" hintText="ID" style={[textField, textFieldStyle]} />
-			<TextField name="password" type="password" hintText="Password" style={[textField, textFieldStyle]} />
-			<CheckBox name="rememberMe" style={[(showRememberMe ? {} : hidden), rememberMeStyle]} label="Remember me" defaultValue={rememberUser} />
-			<RaisedButton type="submit" label="Log in" primary={true} style={[button, buttonStyle]}/>
-		</Form>
-	)
-})
+	var formStyle = Object.assign(styles, {
+		textFieldStyle,
+		rememberMeStyle,
+		buttonStyle,
+	})
 
-const form: React.CSSProperties = {
-	width: "280px",
-	display: "flex",
-	flexDirection: "column",
-	justifyContent: "center",
-}
-
-const textField = {
-	width: "100%",
-}
-
-const hidden = {
-	display: "none",
-}
-
-const button = {
-	width: "100%",
-	marginTop: "12px",
+	return new (injectSheet(formStyle)(({classes, children}) => {
+		var { form, textField, hidden, button, 
+			textFieldStyle, rememberMeStyle, buttonStyle } = classes
+		return (
+			<Form name="login-form" admin={admin} resource="/auth/login" className={`${form}`} onResponse={onResponse}>
+				<TextField name="id" hintText="ID" className={classnames(textField, textFieldStyle)} />
+				<TextField name="password" type="password" hintText="Password" className={classnames(textField, textFieldStyle)} />
+				<CheckBox name="rememberMe" className={classnames({[hidden]: !showRememberMe}, rememberMeStyle)} label="Remember me" defaultValue={rememberUser} />
+				<RaisedButton type="submit" label="Log in" primary={true} className={classnames(button, buttonStyle)}/>
+			</Form>
+		)
+	}))
 }
