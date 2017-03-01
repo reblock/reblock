@@ -1,5 +1,7 @@
 import * as React from 'react'
 import injectSheet from 'react-jss'
+import jss from 'jss'
+import preset from 'jss-preset-default'
 import * as classnames from 'classnames'
 
 import {
@@ -21,26 +23,46 @@ export type MessagePurpose =
 interface MessageProps {
 	title: string
 	purpose?: MessagePurpose
+	showCloseButton?: boolean
 	content?: string
 	children?: React.ReactNode
 }
 
 interface MessageState {
-
+	hide: boolean
 }
 
 export class Message extends React.Component<MessageProps, MessageState> {
 	render() {
 		return (
-			<Layout {...this.props}>
+			<Layout {...this.props} hideMessage={this.state.hide} onClickClose={this.onClickClose}>
 				{this.props.children}
 			</Layout>
 		)
 	}
+
+	onClickClose(e) {
+		e.preventDefault()
+
+		this.setState({
+			hide: true,
+		} as MessageState)
+	}
+
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			hide: false,
+		}
+
+		this.onClickClose = this.onClickClose.bind(this)
+	}
 }
 
 interface LayoutProps extends MessageProps {
-	classes: any
+	hideMessage: boolean
+	onClickClose: (any) => any
 }
 
 const styles = {
@@ -59,15 +81,37 @@ const styles = {
 		justifyContent: "center",
 	},
 
+	textArea: {
+		width: "100%",
+	},
+
 	titleStyle: {
+		display: "flex",
 		fontWeight: "bold",
+	},
+
+	closeButton: {
+		width: "16px",
+		marginLeft: "auto",
+	},
+
+	buttonLink: {
+		textDecoration: "none",
+		color: "inherit",
 	},
 
 	contentStyle: {
 		fontSize: "0.8rem",
 		marginTop: "5px",
 	},
+
+	hide: {
+		display: "none",
+	},
 }
+
+jss.setup(preset())
+const {classes} = jss.createStyleSheet(styles).attach()
 
 const themeScheme = {
 	"GRAY": {
@@ -118,31 +162,34 @@ const themeScheme = {
 }
 
 export const Layout = (props:LayoutProps) => {
-	var {title, content, purpose, classes} = props
+	var {title, content, children, purpose, showCloseButton, onClickClose, hideMessage} = props
 	purpose = purpose || "EXPLANATION"
 	var color = purposeToColor[purpose]
 	var theme = themeScheme[color]
-	var messageStyle = Object.assign(styles, theme)
+	var { background, font } = jss.createStyleSheet(theme).attach().classes
+	var { backgroundStyle, iconStyle, textArea, titleStyle, 
+			closeButton, buttonLink, contentStyle, hide, } = classes
 
-	return new (injectSheet(messageStyle)(({classes, children}) => {
-		var { backgroundStyle, background, iconStyle, titleStyle, contentStyle, font} = classes
-		
-		return (
-			<div className={classnames(backgroundStyle, background)}>
-				{children && 
-					<div className={classnames(iconStyle, font)}>
-						{React.cloneElement(children as React.DOMElement<any, any>, {style: theme.font})}
-					</div>
-				}
-				<div>
-					<div className={classnames(titleStyle, font)}>{title}</div>
-					{content && 
-						<div className={classnames(contentStyle, font)}>{content}</div>
+	return (
+		<div className={classnames(backgroundStyle, background, {[hide]: hideMessage})}>
+			{children && 
+				<div className={classnames(iconStyle, font)}>
+					{React.cloneElement(children as React.DOMElement<any, any>, {style: theme.font})}
+				</div>
+			}
+			<div className={textArea}>
+				<div className={classnames(titleStyle, font)}>
+					<div>{title}</div>
+					{ showCloseButton && 
+						<div className={closeButton}><a className={buttonLink} href="#" onClick={onClickClose}>x</a></div>
 					}
 				</div>
+				{content && 
+					<div className={classnames(contentStyle, font)}>{content}</div>
+				}
 			</div>
-		)
-	}))
+		</div>
+	)
 }
 
 
